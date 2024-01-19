@@ -1,0 +1,221 @@
+a)
+
+select NomeR
+from Receita natural inner join Quantidade natural inner join Ingrediente
+where NomeI like 'pato';
+
+
+
+
+b)
+
+select NomeR
+from Receita
+except
+select NomeR
+from Receita natural inner join Quantidade natural inner join Ingrediente
+where NomeI like 'pato';
+
+
+
+
+c)
+
+select UserN
+from Receita natural inner join Quantidade natural inner join Ingrediente
+     natural inner join Postou     
+where NomeI like 'pato';
+
+
+
+
+
+d)
+
+create view AmigosDe as( select UserN1,UserN2
+                         from Amigos
+                         union
+                         select UserN2, UserN1
+                         from Amigos)
+                         order by userN1;
+                         
+select distinct UserN2
+from AmigosDe
+where UserN1 in(select userN
+                from Receita natural inner join Quantidade natural inner join Ingrediente
+                     natural inner join Postou 
+                where NomeI like 'pato');
+
+
+
+
+e)
+
+select UserN
+from Receita natural inner join Quantidade 
+     natural inner join Ingrediente natural inner join Gostou
+where NomeI like 'pato' and
+      estrelas > 1;
+
+
+
+
+
+f)
+
+select UserN
+from Postou
+where IdR in (select IdR
+              from Receita natural inner join Quantidade natural inner join Ingrediente
+              where nomeI like 'ovos'
+              intersect
+              select IdR
+              from Receita natural inner join Quantidade natural inner join Ingrediente
+              where nomeI like 'amendoa');
+
+
+
+
+g)
+
+
+select distinct UserN
+from Postou
+where IdR in (select IdR
+              from Receita natural inner join Quantidade natural inner join Ingrediente
+              where nomeI like 'pato'
+              union
+              select IdR
+              from Receita natural inner join Quantidade natural inner join Ingrediente
+              where nomeI like 'peru');
+
+
+
+
+h)
+
+Create view N_url as (select IdR,count(url) as n
+                      from Url
+                      where IdR in(select Idr
+                                   from Sobremesa)
+                      group by IdR);
+                      
+select NomeR
+from Receita
+where IdR in (select Idr
+              from N_url
+              where n in (select max(n) 
+              		  from N_url));
+
+
+
+
+i)
+
+
+Create View N3Estrelas as (select UserN, count(estrelas) as n3_e
+                           from Gostou
+                           where IdR in (select IdR
+                                         from Entrada
+                                         where idR in (select IdR
+                                                       from Receita natural inner join Quantidade 
+                                                            natural inner join Ingrediente
+                                                       where NomeI like 'cogumelos'))
+                           and estrelas = 3
+                           group by UserN);
+
+
+select UserN
+from N3Estrelas
+where n3_e in(select count(IdR)
+              from Entrada natural inner join Quantidade 
+                   natural inner join Ingrediente
+                   where NomeI like 'cogumelos');
+
+
+
+j)
+
+create view AmigosDe as( select UserN1,UserN2
+                         from Amigos
+                         union
+                         select UserN2, UserN1
+                         from Amigos)
+                         order by userN1;
+
+create view FriendsLike3 as (select UserN1, count(estrelas) as gosto3e
+                             from AmigosDe , Gostou , Postou
+                             where AmigosDe.userN2 = Gostou.UserN and
+                                   AmigosDe.UserN1 = Postou.UserN and
+                                   Gostou.idR = Postou.idR and
+                                   estrelas = 3
+                              group by UserN1);
+                              
+select UserN1
+from FriendsLike3
+where gosto3e in (select max(gosto3e) as max_gostos3e
+                  from FriendsLike3); 
+
+
+k)
+
+
+select IdR, count(estrelas), custo
+from Gostou natural inner join Receita
+where IdR in(select IdR
+             from sobremesa natural inner join receita 
+                  natural inner join Quantidade 
+                  natural inner join Ingrediente
+             where NomeI like 'chocolate')
+       and estrelas = 3
+       and tempo like 'rapido'
+group by IdR, custo;
+
+
+
+l)
+
+create View N_likesMousse as (select Idr, count(estrelas) as n_Gostos
+                              from Gostou natural inner join Receita
+                              where NomeR like 'mousse de chocolate'
+                              group by IdR);
+
+select count(Idr) as n_Sobremesas
+from Receita
+where IdR in (select IdR
+              from N_LikesMousse
+              where n_Gostos > 5);
+
+
+
+m)
+
+(Manuel Silva = Chico)
+
+
+Create view ChicoAmigos as(select UserN1,UserN2 as amigos
+                           from Amigos
+                           where UserN1 like 'chico'
+                           union
+                           select UserN2, UserN1 as amigos
+                           from Amigos
+                           where UserN2 like 'chico')
+                           order by userN1;
+
+
+Create view FriendLikes as (select IdR, count(estrelas) as gostos
+                            from Gostou , ChicoAmigos
+                            where Gostou.UserN = ChicoAmigos.amigos
+                                  and estrelas > 1
+                            group by IdR);
+
+select IdR
+from FriendLikes
+where gostos in (select count(amigos)
+                 from ChicoAmigos);
+
+
+
+
+
+

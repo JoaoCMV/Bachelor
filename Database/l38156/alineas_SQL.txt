@@ -1,0 +1,232 @@
+
+
+a)
+
+select nome
+from genero natural inner join autoria natural inner join autor
+where genero like 'drama'
+
+
+b)
+
+select distinct nome
+from membro natural inner join gosta natural inner join autor natural inner join autoria 
+where nomeA like 'agatha christie'
+
+
+c)
+
+select distinct nome
+from membro natural inner join gosta natural inner join autor natural inner join autoria 
+where nomeA like 'agatha christie' and
+      Pais = PaisA;
+
+
+d)
+
+(select nome 
+from membro)
+except
+(select distinct nome
+from membro natural inner join gosta natural inner join autor natural inner join autoria 
+where nomeA like 'agatha christie');
+
+
+e)
+
+Leitor -> 02
+
+ with am(a) as 
+        (select idmemb  as a
+        from amigos 
+        where idmembB like '02'
+        union
+        (select idmembB  as a
+        from amigos  
+        where idmemb like '02')
+        order by a)
+        
+(select nome
+from membro)
+except
+(select nome
+from am ,membro
+where membro.idmemb = am.a)
+except
+(select nome
+ from membro
+ where idmemb like '02');
+
+f)
+
+
+ with am(a) as 
+        (select idmemb  as a
+        from amigos 
+        where idmembB like '02'
+        union
+        (select idmembB  as a
+        from amigos  
+        where idmemb like '02')
+        order by a)
+        
+select nome
+from am , membro
+where membro.datanasc > '1993' and
+      am.a = membro.idmemb;
+
+g)
+
+(select distinct nome
+from amigos natural inner join membro natural inner join autoria natural inner join autor natural inner join gosta 
+where NomeA like 'agatha christie')
+intersect
+(select distinct nome
+from amigos natural inner join membro natural inner join autoria natural inner join autor natural inner join gosta
+where NomeA like 'francisco jose viegas');
+
+
+h)
+
+(select distinct nome
+from amigos natural inner join membro natural inner join autoria natural inner join autor natural inner join gosta 
+where NomeA like 'agatha christie')
+union
+(select distinct nome
+from amigos natural inner join membro natural inner join autoria natural inner join autor natural inner join gosta
+where NomeA like 'francisco jose viegas');
+
+i)
+
+select count(*)
+from amigos
+where IdMemb like '01' or
+      IdMembB like '01';
+
+j)
+
+ with tot(IdMemb, c) as
+     ((select IdMemb, count(IdMemb) as c
+     from amigos
+     group by IdMemb)
+     union
+     (select IdMembB, count(IdMembB) as d
+     from amigos 
+     group by IdMembB))
+
+
+select nome, c as num_gostos
+from tot natural inner join membro
+where c = ( select max(num_gostos) as num_gostos from(
+                        select nome, sum(c) as num_gostos
+                        from tot natural inner join membro
+                        group by nome) as r);
+
+
+k)
+
+ with tot(IdMemb, c) as
+     (select IdMemb, count(isbn) as c
+     from gosta
+     group by IdMemb)
+
+select nome
+from membro
+where idmemb in(
+    select idmembb
+    from amigos
+    where idmemb = (
+        select idmemb
+        from tot natural inner join membro
+        where c = (select max(c)
+                   from tot)))
+
+l)
+
+select isbn,n from(
+     select isbn, count(genero) as n
+     from genero 
+     group by (isbn)) as r
+
+m)
+
+
+select isbn,generos,gostos from(
+     select isbn, count(genero) as generos
+     from genero 
+     group by (isbn)) as r
+     natural inner join
+     (select isbn, count(idmemb) as gostos
+     from gosta 
+     group by (isbn)) as s
+
+n)
+
+select nomeA,num_livros, num_generos, num_gostos from(
+     select nomeA, count(isbn) as num_livros
+     from autoria natural inner join autor 
+     group by (nomeA)) as r
+     natural inner join
+     (select nomeA, count(isbn) as num_generos
+     from autoria natural inner join autor natural inner join genero
+     group by (nomeA)) as s
+     natural inner join
+     (select nomeA, count(isbn) as num_gostos
+     from autoria natural inner join autor natural inner join gosta
+     group by (nomeA)) as t
+
+o)
+
+ with tot(IdMemb, c) as
+     ((select IdMemb, count(IdMemb) as c
+     from amigos
+     group by IdMemb)
+     union
+     (select IdMembB, count(IdMembB) as d
+     from amigos 
+     group by IdMembB))
+
+
+select idmemb, nome,num_amigos, num_gostos from(
+    select idmemb, nome, sum(c) as num_amigos
+    from tot natural inner join membro
+    group by idmemb, nome
+    order by idmemb) as r
+    natural inner join
+    (select idmemb, nome, count(isbn) as num_gostos
+    from gosta natural inner join membro
+    group by idmemb, nome
+    order by idmemb) as s;
+
+p)
+
+
+
+select nome from(
+    select nome, sum(c) as num_amigos
+    from tot natural inner join membro
+    where c = '19'
+    group by  nome) as r
+
+
+q)
+
+ with am(a) as 
+        (select idmemb  as a
+        from amigos 
+        where idmembB like '01'
+        union
+        (select idmembB  as a
+        from amigos  
+        where idmemb like '01')
+        order by a)
+
+select distinct titulo
+from am , gosta , livro
+where am.a = gosta.idmemb and
+      livro.isbn = gosta.isbn;
+
+
+
+
+ 

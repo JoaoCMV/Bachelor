@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:columnCount="3">
+
+    <TextView
+        android:id="@+id/t1"
+        android:layout_row="0"
+        android:layout_column="0"
+        android:text="@string/team1"
+        android:layout_margin="16dp"
+        android:textStyle="bold"
+        android:textSize="30sp"/>
+
+    <TextView
+        android:id="@+id/t2"
+        android:layout_row="0"
+        android:layout_column="1"
+        android:text="@string/team2"
+        android:layout_margin="16dp"
+        android:textStyle="bold"
+        android:textSize="30sp"/>
+
+    <TextView
+        android:id="@+id/team1_p1"
+        android:layout_row="4"
+        android:layout_column="0"
+        android:text="Jogador"
+        android:layout_margin="16dp"
+        android:textSize="17sp"/>
+
+
+    <ImageView
+        android:paddingTop="10dp"
+        android:id="@+id/team1_p1_i"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_row="3"
+        android:layout_column="0"
+        android:paddingBottom="20dp"
+        android:src="@drawable/player" />
+
+    <TextView
+        android:id="@+id/team1_p2"
+        android:layout_row="6"
+        android:layout_column="0"
+        android:text="Jogador"
+        android:layout_margin="16dp"
+        android:textSize="17sp"/>
+
+
+    <ImageView
+        android:paddingTop="10dp"
+        android:id="@+id/team1_p2_i"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_row="5"
+        android:layout_column="0"
+        android:paddingBottom="20dp"
+        android:src="@drawable/player" />
+
+    <TextView
+        android:id="@+id/team1_p3"
+        android:layout_row="9"
+        android:layout_column="0"
+        android:text="Jogador"
+        android:layout_marginRight="2dp"
+        android:layout_margin="16dp"
+        android:textSize="17sp"/>
+
+
+    <ImageView
+        android:paddingTop="10dp"
+        android:id="@+id/team1_p3_i"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_row="8"
+        android:layout_column="0"
+        android:layout_marginRight="2dp"
+        android:paddingBottom="20dp"
+        android:src="@drawable/player" />
+
+    <TextView
+        android:id="@+id/team2_p1"
+        android:layout_row="4"
+        android:layout_column="1"
+        android:text="Jogador"
+        android:layout_margin="16dp"
+        android:textSize="17sp"/>
+
+
+    <ImageView
+        android:paddingTop="10dp"
+        android:id="@+id/team2_p1_i"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_row="3"
+        android:layout_column="1"
+        android:paddingBottom="20dp"
+        android:src="@drawable/player" />
+
+    <TextView
+        android:id="@+id/team2_p2"
+        android:layout_row="6"
+        android:layout_column="1"
+        android:text="Jogador"
+        android:layout_margin="16dp"
+        android:textSize="17sp"/>
+
+
+    <ImageView
+        android:paddingTop="10dp"
+        android:id="@+id/team2_p2_i"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_row="5"
+        android:layout_column="1"
+        android:paddingBottom="20dp"
+        android:src="@drawable/player" />
+
+    <TextView
+        android:id="@+id/team2_p3"
+        android:layout_row="9"
+        android:text="Jogador"
+        android:layout_column="1"
+        android:layout_margin="16dp"
+        android:textSize="15sp"/>
+
+
+    <ImageView
+        android:paddingTop="10dp"
+        android:id="@+id/team2_p3_i"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_row="8"
+        android:layout_column="1"
+        android:paddingBottom="20dp"
+        android:src="@drawable/player" />
+
+    <Button
+        android:id="@+id/btnGame_to_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/back_home"
+        android:layout_marginTop="50dp"
+        android:layout_row="13"
+        android:layout_column="1"/>
+
+
+
+</GridLayout>

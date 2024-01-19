@@ -1,0 +1,621 @@
+
+Create table Membro ( 
+
+ NomeM varchar(15),
+ 
+ userN varchar(15) primary key, 
+
+ Pais varchar(15), 
+
+ Cidade varchar(10),
+    
+ DataNasc varchar(10)
+
+);
+
+
+insert into Membro values ('joao','jony', 'portugal', 'lisboa', '1997');
+
+insert into Membro values ('pedro','pp', 'portugal', 'faro', '1993');
+
+insert into Membro values ('vasco','vasco', 'portugal', 'lisboa', '1977');
+
+insert into Membro values ('ana','ana01', 'portugal', 'porto', '2001');
+
+insert into Membro values ('yuri','99yuri', 'russia', 'moscovo', '1999');
+
+insert into Membro values ('nicole','nikki', 'portugal', 'lisboa', '1999');
+
+insert into Membro values ('francisco','chico', 'portugal', 'evora', '1982');
+
+insert into Membro values ('paulo','paulo1995', 'portugal', 'lisboa', '1995');
+
+insert into Membro values ('joaquim','quim', 'inglaterra', 'londres', '1979');
+
+insert into Membro values ('andre','aa7', 'franca', 'paris', '1993');
+
+insert into Membro values ('andreia','andreia', 'portugal', 'lisboa', '1999');
+
+insert into Membro values ('ines','ines', 'portugal', 'faro', '1993');
+
+insert into Membro values ('maria','mari', 'portugal', 'beja', '1989');
+
+insert into Membro values ('mariana','marianinha', 'portugal', 'porto', '2002');
+
+insert into Membro values ('jacinto','iacinto97', 'italia', 'turim', '1997');
+
+insert into Membro values ('catarina','cat', 'portugal', 'braga', '1998');
+
+insert into Membro values ('carla','carla90', 'inglaterra', 'londres', '1990');
+
+insert into Membro values ('daniela','dani', 'angola', 'luanda', '1994');
+
+insert into Membro values ('tiago','tigas', 'portugal', 'faro', '1985');
+
+insert into Membro values ('joana','joaninha', 'portugal', 'evora', '1980');
+
+
+create table amigos(
+    
+userN1 varchar(15),
+    
+userN2 varchar(15),
+    
+primary key (userN1,userN2),
+    
+foreign key (userN1) references membro on  delete restrict,
+foreign key (userN2) references membro on  delete restrict
+    
+);
+
+insert into Amigos values ('jony', 'pp');
+insert into Amigos values ('jony', 'vasco');
+insert into Amigos values ('jony', 'ana01');
+insert into Amigos values ('jony', '99yuri');
+insert into Amigos values ('jony', 'nikki');
+insert into Amigos values ('jony', 'chico');
+insert into Amigos values ('jony', 'paulo1995');
+insert into Amigos values ('jony', 'quim');
+insert into Amigos values ('jony', 'aa7');
+insert into Amigos values ('jony', 'andreia');
+insert into Amigos values ('jony', 'ines');
+insert into Amigos values ('jony', 'mari');
+insert into Amigos values ('jony', 'marianinha');
+insert into Amigos values ('jony', 'iacinto97');
+insert into Amigos values ('jony', 'carla90');
+insert into Amigos values ('jony', 'dani');
+insert into Amigos values ('jony', 'tigas');
+insert into Amigos values ('jony', 'joaninha');
+insert into Amigos values ('jony', 'cat');
+
+insert into Amigos values ('pp', 'vasco');
+insert into Amigos values ('pp', 'aa7');
+
+insert into Amigos values ('vasco', 'aa7');
+insert into Amigos values ('vasco', 'joaninha');
+
+insert into Amigos values ('ana01', 'carla90');
+insert into Amigos values ('ana01', 'dani');
+
+insert into Amigos values ('99yuri', 'nikki');
+
+insert into Amigos values ('chico', 'paulo1995');
+insert into Amigos values ('chico', 'tigas');
+
+insert into Amigos values ('quim', 'andreia');
+
+insert into Amigos values ('ines', 'marianinha');
+
+insert into Amigos values ('iacinto97', 'cat');
+
+insert into Amigos values ('tigas', 'joaninha');
+
+insert into Amigos values ('dani', 'joaninha');
+insert into Amigos values ('dani', 'mari');
+
+
+Create table Receita(
+    descricao varchar(50),
+    nomeR varchar(30),
+    IdR int primary key,
+    tempo varchar(10),
+    custo varchar(3)
+);
+
+insert into Receita values ('Arroz com pato escondido',
+                            'arroz de pato', 1, 'demorado', '$$');
+insert into Receita values ('Arroz com marisco. Bom para qualquer refeiçao',
+                            'arroz de marisco', 2, 'demorado', '$$$');
+insert into Receita values ('Peru tradicional',
+                            'peru', 3, 'demorado', '$$');
+insert into Receita values ('Melhor opcao para um almoco rapido e saboroso',
+                            'risoto de salmao', 4, 'medio', '$');
+insert into Receita values ('Massa italiana muito boa para qualquer ocasiao',
+                            'massa italiana', 5, 'rapido', '$');
+insert into Receita values ('Lasanha simples tradicional',
+                            'lasanha', 6, 'medio', '$');
+insert into Receita values ('Aproveite o nosso bacalhau com este belo prato',
+                            'bacalhau com natas', 7, 'demorado', '$$$');
+insert into Receita values ('Excelente sobremesa',
+                            'leite creme', 8, 'rapido', '$');
+insert into Receita values ('Excelente para qualquer dia frio',
+                            'canja', 9, 'medio', '$$');
+insert into Receita values ('Nutritiva e muito deliciosa',
+                            'creme de cenoura', 10, 'rapido', '$$');
+insert into Receita values ('Refrescante e delicioso',
+                            'gelado de limao', 11, 'rapido', '$');                            
+insert into Receita values ('Simples e pratico',
+                            'ovos com salsicha', 12, 'rapido', '$');                           
+insert into Receita values ('Pratico para qualquer refeição',
+                            'bife com cogumelos', 13, 'meido', '$$');                            
+insert into Receita values ('Já comeu fruta hoje?',
+                            'salada de fruta', 14, 'rapido', '$');                            
+insert into Receita values ('Para os amantes de chocolate',
+                            'bolo de chocolate', 15, 'demorado', '$$');                            
+insert into Receita values ('Requinte para qualquer mesa',
+                            'lagosta com caviar', 16, 'rapido', '$$$');                            
+insert into Receita values ('Melhor pao de alho para comecar qualquer refeicao',
+                            'pao de alho', 17, 'rapido', '$$');                          
+insert into Receita values ('Para qualquer amante de doce',
+                            'baba de camelo', 18, 'medio', '$');                           
+insert into Receita values ('Melhor bolo para amantes de ovos',
+                            'lampreia de ovos', 19, 'medio', '$');                            
+insert into Receita values ('Aproveitar o marisco da melhor forma',
+                            'camarao marinado', 20, 'demorado', '$$$');                            
+insert into Receita values ('Ovos para a entrada',
+                            'ovos com farinheira', 21, 'medio', '$$');                           
+insert into Receita values ('Bom para qualquer entrada',
+                            'pate de atum com cogumelos', 22, 'medio', '$');  
+insert into Receita values ('Cogumelos assado',
+                            'cogumelos assados', 23, 'medio', '$'); 
+insert into Receita values('Melhor doce de chocolate',
+                           'gelado de chocolate', 24, 'rapido', '$');
+insert into Receita values('Mousse simples',
+                           'mousse de chocolate', 25, 'rapido', '$$');
+                           
+
+
+
+Create table Postou(
+    
+    userN varchar(15),
+    IdR int,
+    primary key (userN,IdR),
+    
+    foreign key (userN) references membro on  delete restrict,
+    foreign key (IdR) references Receita on  delete restrict
+    
+);
+
+Insert into Postou values ('jony', 12);
+Insert into Postou values ('jony', 2);
+Insert into Postou values ('jony', 23);
+
+Insert into Postou values ('pp', 1);
+Insert into Postou values ('pp', 10);
+
+Insert into Postou values ('vasco', 13);
+Insert into Postou values ('vasco', 18);
+
+Insert into Postou values ('ana01', 14);
+Insert into Postou values ('ana01', 4);
+Insert into Postou values ('ana01', 25);
+
+Insert into Postou values ('99yuri', 16);
+Insert into Postou values ('99yuri', 6);
+
+Insert into Postou values ('nikki', 2);
+Insert into Postou values ('nikki', 17);
+
+Insert into Postou values ('chico', 21);
+Insert into Postou values ('chico', 8);
+
+Insert into Postou values ('paulo1995', 19);
+Insert into Postou values ('paulo1995', 17);
+
+Insert into Postou values ('quim', 4);
+Insert into Postou values ('quim', 15);
+
+Insert into Postou values ('aa7', 3);
+Insert into Postou values ('aa7', 1);
+
+Insert into Postou values ('andreia', 5);
+Insert into Postou values ('andreia', 9);
+
+Insert into Postou values ('ines', 8);
+Insert into Postou values ('ines', 5);
+
+Insert into Postou values ('mari', 14);
+Insert into Postou values ('mari', 6);
+
+Insert into Postou values ('marianinha', 15);
+Insert into Postou values ('marianinha', 18);
+
+Insert into Postou values ('iacinto97', 20);
+Insert into Postou values ('iacinto97', 19);
+
+Insert into Postou values ('cat', 3);
+Insert into Postou values ('cat', 7);
+Insert into Postou values ('cat', 24);
+
+Insert into Postou values ('carla90', 20);
+Insert into Postou values ('carla90', 11);
+
+Insert into Postou values ('dani', 21);
+Insert into Postou values ('dani', 12);
+
+Insert into Postou values ('tigas', 22);
+Insert into Postou values ('tigas', 13);
+
+Insert into Postou values ('joaninha', 11);
+Insert into Postou values ('joaninha', 10);
+
+Create table Gostou(
+    
+    userN varchar(15),
+    IdR int,
+    estrelas int,
+    primary key (userN,IdR),
+    
+    foreign key (userN) references membro on  delete restrict,
+    foreign key (IdR) references Receita on  delete restrict
+    
+);
+
+Insert into Gostou values ('jony', 1, 3);
+Insert into Gostou values ('jony', 5, 3);
+Insert into Gostou values ('jony', 8, 2);
+Insert into Gostou values ('jony', 9, 1);
+Insert into Gostou values ('jony', 10, 3);
+Insert into Gostou values ('jony', 11, 3);
+Insert into Gostou values ('jony', 18, 2);
+
+Insert into Gostou values ('pp', 3, 1);
+Insert into Gostou values ('pp', 2, 1);
+Insert into Gostou values ('pp', 13, 1);
+
+Insert into Gostou values ('vasco', 1, 1);
+Insert into Gostou values ('vasco', 11, 3);
+
+Insert into Gostou values ('ana01', 20, 2);
+Insert into Gostou values ('ana01', 21, 3);
+
+Insert into Gostou values ('99yuri', 2, 2);
+Insert into Gostou values ('99yuri', 17, 2);
+
+Insert into Gostou values ('nikki', 6, 2);
+Insert into Gostou values ('nikki', 16, 1);
+
+Insert into Gostou values ('chico', 17, 3);
+Insert into Gostou values ('chico', 19, 3);
+Insert into Gostou values ('chico', 22, 3);
+Insert into Gostou values ('chico', 23, 3);
+
+Insert into Gostou values ('paulo1995', 1, 3);
+Insert into Gostou values ('paulo1995', 2, 2);
+Insert into Gostou values ('paulo1995', 21, 1);
+Insert into Gostou values ('paulo1995', 25, 2);
+
+Insert into Gostou values ('quim', 4, 2);
+Insert into Gostou values ('quim', 12, 2);
+Insert into Gostou values ('quim', 15, 2);
+
+Insert into Gostou values ('aa7', 10, 3);
+Insert into Gostou values ('aa7', 18, 2);
+Insert into Gostou values ('aa7', 25, 2);
+
+Insert into Gostou values ('andreia', 2, 3);
+Insert into Gostou values ('andreia', 4, 3);
+Insert into Gostou values ('andreia', 15, 1);
+
+Insert into Gostou values ('ines', 12, 2);
+Insert into Gostou values ('ines', 15, 2);
+Insert into Gostou values ('ines', 18, 3);
+Insert into Gostou values ('ines', 25, 3);
+
+Insert into Gostou values ('mari', 12, 1);
+Insert into Gostou values ('mari', 21, 1);
+
+Insert into Gostou values ('marianinha', 5, 1);
+Insert into Gostou values ('marianinha', 8, 1);
+Insert into Gostou values ('marianinha', 25, 2);
+
+Insert into Gostou values ('iacinto97', 2, 2);
+Insert into Gostou values ('iacinto97', 3, 2);
+Insert into Gostou values ('iacinto97', 7, 3);
+Insert into Gostou values ('iacinto97', 24, 3);
+
+Insert into Gostou values ('cat', 12, 1);
+Insert into Gostou values ('cat', 19, 3);
+
+Insert into Gostou values ('carla90', 4, 1);
+Insert into Gostou values ('carla90', 14, 1);
+Insert into Gostou values ('carla90', 25, 3);
+
+Insert into Gostou values ('dani', 10, 1);
+Insert into Gostou values ('dani', 22, 3);
+Insert into Gostou values ('dani', 25, 3);
+
+Insert into Gostou values ('tigas', 1, 3);
+Insert into Gostou values ('tigas', 2, 3);
+Insert into Gostou values ('tigas', 10, 3);
+
+Insert into Gostou values ('joaninha', 12, 2);
+Insert into Gostou values ('joaninha', 13, 2);
+Insert into Gostou values ('joaninha', 21, 2);
+Insert into Gostou values ('joaninha', 22, 1);
+
+
+
+create table Url(
+    IdR int,
+    url varchar(50),
+    primary key (IdR, url),
+    foreign key (IdR) references Receita on  delete restrict
+);
+
+insert into Url values (1, 'www.google.myphotoex01_1');
+insert into Url values (1, 'www.google.myphotoex01_2');
+insert into Url values (2, 'www.google.myphotoex02');
+insert into Url values (3, 'www.google.myphotoex03');
+insert into Url values (4, 'www.google.myphotoex04');
+insert into Url values (5, 'www.google.myphotoex05');
+insert into Url values (6, 'www.google.myphotoex06');
+insert into Url values (7, 'www.google.myphotoex07_1');
+insert into Url values (7, 'www.google.myphotoex07_2');
+insert into Url values (7, 'www.google.myphotoex07_3');
+insert into Url values (7, 'www.google.myphotoex07_4');
+insert into Url values (8, 'www.google.myphotoex08_1');
+insert into Url values (8, 'www.google.myphotoex08_2');
+insert into Url values (9, 'www.google.myphotoex09_1');
+insert into Url values (9, 'www.google.myphotoex09_2');
+insert into Url values (9, 'www.google.myphotoex09_3');
+insert into Url values (9, 'www.google.myphotoex09_4');
+insert into Url values (10, 'www.google.myphotoex10');
+insert into Url values (11, 'www.google.myphotoex11');
+insert into Url values (12, 'www.google.myphotoex12');
+insert into Url values (13, 'www.google.myphotoex13');
+insert into Url values (14, 'www.google.myphotoex14');
+insert into Url values (15, 'www.google.myphotoex15');
+insert into Url values (16, 'www.google.myphotoex16');
+insert into Url values (17, 'www.google.myphotoex17');
+insert into Url values (18, 'www.google.myphotoex18');
+insert into Url values (19, 'www.google.myphotoex19');
+insert into Url values (20, 'www.google.myphotoex20');
+insert into Url values (21, 'www.google.myphotoex21');
+insert into Url values (22, 'www.google.myphotoex22');
+insert into Url values (23, 'www.google.myphotoex23');
+
+
+Create table Entrada(
+    IdR int primary key,
+    foreign key (IdR) references Receita on  delete restrict
+);
+
+insert into Entrada values(9);
+insert into Entrada values(10);
+insert into Entrada values(16);
+insert into Entrada values(17);
+insert into Entrada values(20);
+insert into Entrada values(21);
+insert into Entrada values(22);
+insert into Entrada values(23);
+
+
+Create table Principal(
+    IdR int primary key,
+    porcoes varchar(2),
+    foreign key (IdR) references Receita on  delete restrict
+);
+
+insert into Principal values (1, 6);
+insert into Principal values (2, 5);
+insert into Principal values (3, 4);
+insert into Principal values (4, 2);
+insert into Principal values (5, 2);
+insert into Principal values (6, 6);
+insert into Principal values (7, 8);
+insert into Principal values (12, 2);
+insert into Principal values (13, 3);
+
+
+Create table Sobremesa(
+    IdR int primary key,
+    facilidade varchar(10),
+    foreign key (IdR) references Receita on  delete restrict
+);
+
+insert into Sobremesa values (8, 'facil');
+insert into Sobremesa values (11, 'medio');
+insert into Sobremesa values (14, 'facil');
+insert into Sobremesa values (15, 'dificil');
+insert into Sobremesa values (18, 'medio');
+insert into Sobremesa values (19, 'dificil');
+insert into Sobremesa values (24, 'facil');
+insert into Sobremesa values (25, 'facil');
+
+Create table Ingrediente(
+    IdIngrediente int primary key,
+    NomeI varchar(25)
+);
+
+insert into Ingrediente values (1, 'agua');
+insert into Ingrediente values (2, 'arroz');
+insert into Ingrediente values (3, 'pato');
+insert into Ingrediente values (4, 'cebola');
+insert into Ingrediente values (5, 'azeite');
+insert into Ingrediente values (6, 'camarao');
+insert into Ingrediente values (7, 'tomate');
+insert into Ingrediente values (8, 'coentros');
+insert into Ingrediente values (9, 'salmao');
+insert into Ingrediente values (10, 'nata');
+insert into Ingrediente values (11, 'massa');
+insert into Ingrediente values (12, 'queijo');
+insert into Ingrediente values (13, 'carne picada');
+insert into Ingrediente values (14, 'bacalhau');
+insert into Ingrediente values (15, 'batata');
+insert into Ingrediente values (16, 'sal');
+insert into Ingrediente values (17, 'limao');
+insert into Ingrediente values (18, 'baunilha');
+insert into Ingrediente values (19, 'bacon');
+insert into Ingrediente values (20, 'leite');
+insert into Ingrediente values (21, 'acucar');
+insert into Ingrediente values (22, 'cenoura');
+insert into Ingrediente values (23, 'frango');
+insert into Ingrediente values (24, 'ovos');
+insert into Ingrediente values (25, 'cogumelos');
+insert into Ingrediente values (26, 'chocolate');
+insert into Ingrediente values (27, 'lagosta');
+insert into Ingrediente values (28, 'caviar');
+insert into Ingrediente values (29, 'farinheira');
+insert into Ingrediente values (30, 'atum');
+insert into Ingrediente values (31, 'maionese');
+insert into Ingrediente values (32, 'banana');
+insert into Ingrediente values (33, 'maca');
+insert into Ingrediente values (34, 'pera');
+insert into Ingrediente values (35, 'salsicha');
+insert into Ingrediente values (36, 'cogumelos');
+insert into Ingrediente values (37, 'farinha');
+insert into Ingrediente values (38, 'pao');
+insert into Ingrediente values (39, 'alho');
+insert into Ingrediente values (40, 'leite condensado');
+insert into Ingrediente values (41, 'peru');
+insert into Ingrediente values (42, 'amendoa');
+
+
+Create table Quantidade(
+    IdR int,
+    quant varchar(5),
+    uni varchar(10),
+    IdIngrediente int,
+    
+    primary key (IdR, IdIngrediente),
+    foreign key (IdR) references Receita on  delete restrict,
+    foreign key (IdIngrediente) references Ingrediente on  delete restrict
+);
+
+insert into Quantidade values  (1, 1, 'kg', 2);
+insert into Quantidade values  (1, 0.75, 'kg', 3);
+insert into Quantidade values  (1, 0.5, 'l', 1);
+insert into Quantidade values  (1, 50, 'g', 4);
+insert into Quantidade values  (1, 1, 'colher', 5);
+insert into Quantidade values  (1, 0, 'qb', 16);
+
+insert into Quantidade values  (2, 1.5, 'l', 1);
+insert into Quantidade values  (2, 2, 'kg', 2);
+insert into Quantidade values  (2, 1, 'kg', 6);
+insert into Quantidade values  (2, 0, 'qb', 8);
+insert into Quantidade values  (2, 0, 'qb', 5);
+insert into Quantidade values  (2, 0, 'qb', 16);
+
+insert into Quantidade values  (3, 1.5, 'kg', 2);
+insert into Quantidade values  (3, 1, 'kg', 41);
+insert into Quantidade values  (3, 0, 'qb', 5);
+insert into Quantidade values  (3, 0, 'qb', 16);
+
+insert into Quantidade values  (4, 0, 'qb', 1);
+insert into Quantidade values  (4, 0.5, 'kg', 2);
+insert into Quantidade values  (4, 0, 'qb', 5);
+insert into Quantidade values  (4, 0.35, 'l', 10);
+insert into Quantidade values  (4, 0.5, 'kg', 9);
+insert into Quantidade values  (4, 0, 'qb', 16);
+
+insert into Quantidade values  (5, 0, 'qb', 16);
+insert into Quantidade values  (5, 0, 'qb', 5);
+insert into Quantidade values  (5, 0.2, 'kg', 7);
+insert into Quantidade values  (5, 0.5, 'kg', 11);
+insert into Quantidade values  (5, 100, 'g', 19);
+
+insert into Quantidade values  (6, 0, 'qb', 16);
+insert into Quantidade values  (6, 0, 'qb', 5);
+insert into Quantidade values  (6, 1.5, 'kg', 13);
+insert into Quantidade values  (6, 50, 'g', 4);
+insert into Quantidade values  (6, 100, 'g', 19);
+insert into Quantidade values  (6, 150, 'g', 12);
+
+insert into Quantidade values  (7, 0, 'qb', 16);
+insert into Quantidade values  (7, 0, 'qb', 5);
+insert into Quantidade values  (7, 1, 'kg', 14);
+insert into Quantidade values  (7, 0.75, 'kg', 15);
+insert into Quantidade values  (7, 0, 'qb', 4);
+
+insert into Quantidade values  (8, 1, 'l', 20);
+insert into Quantidade values  (8, 120, 'g', 21);
+
+insert into Quantidade values  (9, 1, 'l', 1);
+insert into Quantidade values  (9, 0, 'qb', 16);
+insert into Quantidade values  (9, 400, 'g', 11);
+insert into Quantidade values  (9, 220, 'g', 23);
+
+insert into Quantidade values  (10, 1, 'l', 1);
+insert into Quantidade values  (10, 0, 'qb', 16);
+insert into Quantidade values  (10, 100, 'g', 22);
+insert into Quantidade values  (10, 0, 'qb', 17);
+
+insert into Quantidade values  (11, 200, 'g', 18);
+insert into Quantidade values  (11, 50, 'g', 17);
+insert into Quantidade values  (11, 50, 'g', 21);
+
+insert into Quantidade values  (12, 2, 'uni.', 24);
+insert into Quantidade values  (12, 6, 'uni.', 35);
+insert into Quantidade values  (12, 0, 'qb', 16);
+
+insert into Quantidade values  (13, 200, 'g', 23);
+insert into Quantidade values  (13, 75, 'g', 10);
+insert into Quantidade values  (13, 200, 'g', 2);
+insert into Quantidade values  (13, 20, 'g', 36);
+insert into Quantidade values  (13, 0, 'qb', 16);
+
+insert into Quantidade values  (14, 50, 'g', 32);
+insert into Quantidade values  (14, 50, 'g', 33);
+insert into Quantidade values  (14, 50, 'g', 34);
+
+insert into Quantidade values  (15, 250, 'g', 26);
+insert into Quantidade values  (15, 100, 'g', 21);
+insert into Quantidade values  (15, 150, 'g', 37);
+
+insert into Quantidade values  (16, 100, 'g', 27);
+insert into Quantidade values  (16, 100, 'g', 28);
+insert into Quantidade values  (16, 0, 'qb', 17);
+
+insert into Quantidade values  (17, 100, 'g', 38);
+insert into Quantidade values  (17, 25, 'g', 39);
+
+insert into Quantidade values  (18, 100, 'g', 40);
+insert into Quantidade values  (18, 250, 'g', 24);
+
+insert into Quantidade values  (19, 400, 'g', 24);
+insert into Quantidade values  (19, 75, 'g', 21);
+insert into Quantidade values  (19, 20, 'g', 42);
+
+insert into Quantidade values  (20, 500, 'g', 6);
+insert into Quantidade values  (20, 0.1, 'l', 5);
+insert into Quantidade values  (20, 0, 'qb', 39);
+insert into Quantidade values  (20, 0, 'qb', 17);
+
+insert into Quantidade values  (21, 3, 'uni.', 24);
+insert into Quantidade values  (21, 75, 'g', 29);
+
+insert into Quantidade values  (22, 50, 'g', 30);
+insert into Quantidade values  (22, 100, 'g', 31);
+insert into Quantidade values  (22, 2, 'uni.', 24);
+insert into Quantidade values  (22, 15, 'g', 25);
+
+insert into Quantidade values  (23, 25, 'g', 25);
+insert into Quantidade values  (23, 0, 'qb', 5);
+insert into Quantidade values  (23, 0, 'qb', 16);
+
+insert into Quantidade values  (24, 150, 'g', 18);
+insert into Quantidade values  (24, 50, 'g', 21);
+insert into Quantidade values  (24, 100, 'g', 26);
+
+insert into Quantidade values  (25, 250, 'g', 26);
+insert into Quantidade values  (25, 0.2, 'l', 1);
+
+
+
+Create View GostosAvg as (select IdR, avg(estrelas)
+                           from Gostou
+                           group by IdR);
+      
+      

@@ -1,0 +1,553 @@
+.error {
+	padding: 15px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	color: #a94442;
+	background-color: #f2dede;
+	border-color: #ebccd1;
+}
+
+.msg {
+	padding: 15px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	color: #31708f;
+	background-color: #d9edf7;
+	border-color: #bce8f1;
+}
+
+#sub{
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: white;
+    background-color: #00BFFF;
+    border-color: #ebccd1;
+}
+
+#form-box {
+	width: 500px;
+	padding: 20px;
+	margin: 50px auto;
+	background: #fff;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border: 1px solid #000;
+}
+
+.form-box {
+	width: 500px;
+	padding: 20px;
+	margin: 50px auto;
+	background: #fff;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border: 1px solid #000;
+}
+
+.sub{
+    padding: 5px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: white;
+    background-image: linear-gradient(to bottom right, #4169E1, #00BFFF);
+    border-color: #ebccd1;
+}
+
+#sub{
+    padding: 5px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: white;
+    background-image: linear-gradient(to bottom right, #4169E1, #00BFFF);
+    border-color: #ebccd1;
+}
+
+#form-box ol{
+     width : 70%;
+}
+
+body{
+   font-size: 120%; 
+}
+
+#menu{
+    width: 100%;
+    background-color: white;
+    height: 30px;
+}
+
+#menu nav{
+    font-size: 90%;
+    width: 16%;
+    display: inline-block; 
+    border-bottom-style: groove;
+    border-bottom-color: black;
+}
+
+#menu nav a{
+    text-decoration: none;
+    color: black;
+    padding: auto;
+}
+
+#menu nav a:hover{
+    color: blue;
+    font-size: 130%;
+}
+
+#logout{
+        font-size: 120%;
+    }
+
+a {
+  text-decoration: none;
+    color: black;
+}
+
+.eventos a:hover{
+    color:blue;
+}
+
+#logout a:hover {
+  color: red;
+}
+
+#Logo{
+    clear:left;
+    text-align: center;
+    background-color: rgb(3, 177, 252, 0.2);
+    font-family: cursive;
+    font-size: 200%;
+    height: 40%;
+}
+
+#Logo img{
+    padding-top: 30px;
+    border-radius: 50%;
+}
+
+#Logo h1{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.h1_hp{
+    border-bottom-style: groove;
+    border-bottom-color: black;
+    background-color: rgb(3, 177, 252, 0.2);
+}
+
+
+
+.e_info{
+    display: inline-grid;
+    width: 24.5%;
+    border-right-style: groove;
+    border-bottom-color: black;    
+}
+
+.e_info img{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1px;
+    display: block;
+}
+
+.e_info p{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 100%;
+}
+
+#pag a{
+    border: 1px solid black;
+    margin: 0 4px;
+    cursor: pointer;
+}
+
+#pag{
+    text-align: center;
+}
+
+.paginas{
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+.paginas li{
+    display: inline;
+}
+
+.paginas li a {
+    color: black;
+    float: left;
+    padding: 2px 5px;
+    text-decoration: none;
+    border-radius: 10px;
+}
+
+.paginas li a:hover{
+    background-color: #D3D3D3;
+}
+
+#rodape{
+    clear: both;
+    background-color: rgb(3, 177, 252, 0.2);
+    border-radius: 1em;
+    color: black;
+    height: 10em;
+    margin-left: 1%;
+    margin-right: 2%;
+    margin-top: 5%;
+    
+}
+
+#rodape #patron{
+    margin-left: 1%;
+    padding-top: 1%;
+    
+}
+
+#rodape #sobre{
+    margin-left: 1%;
+    padding-top: 1%;
+    
+}
+
+#rodape #autor{
+    margin-left: 1%;
+    padding-top: 1%;
+    
+}
+
+#ne_Button{
+    margin-left: 20%;
+}
+
+#p_insc{
+    font-size: 120%;
+}
+
+#ref{
+    width: 15%;
+    margin-top: 2%;
+    border-style: solid;
+    margin-left: 10%;
+    padding-left: 3%;
+    
+}
+
+#ref a{
+    background-image: linear-gradient(to bottom right, #4169E1, #00BFFF);
+    padding: 0.5%;
+    color:white;
+    border-style:ridge;
+    border-color:#00BFFF;
+    margin-left: 15%;
+}
+
+#lista_insc h3{
+    font-size: 150%;
+    border-bottom: double;
+    width: 90%;
+    border-color: #00BFFF; 
+}
+
+#pesquisa{
+    margin-top:5%;
+}
+
+#pesquisa{
+    margin-top:5%;
+}
+
+#response img{
+    width: 15%;
+    float: left;
+}
+
+#response h3{
+    margin-left: 18%;
+    border-bottom: double;
+    border-color: #00BFFF;
+    width: 60%;
+}
+
+#response h4{
+    margin-left: 18%;
+}
+
+#response #desc{
+    margin-top:7%; 
+    clear:left;
+}
+
+
+#response a{
+    background-image: linear-gradient(to bottom right, #4169E1, #00BFFF);
+    padding: 0.5%;
+    color:white;
+    border-style:ridge;
+    border-color:#00BFFF;
+}
+
+#response #a_inscrever{
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+#lista_pesquisa_buttons{
+    margin-top: 5%;    
+}
+
+.ranks{
+    border-bottom: double;
+    border-color:#00BFFF; 
+    
+}
+
+#lista_escaloes h5{
+    margin-left: 3%;
+}
+
+#lista_insc a:hover{
+    color: blue;
+}
+
+#Info_Participante{
+    margin-top: 5%;
+}
+
+#Info_Participante img{
+    width: 15%;
+    height: 40%;
+    float:left;
+}
+
+#Info_Participante h3{
+    margin-left: 18%;
+    margin-top: 4%;
+}
+
+#Info_Participante h3 + p{
+    padding-top: 2%;
+    clear: left;
+}
+
+#rank_escaloes h5{
+    margin-left: 3%;
+}
+
+#erro{
+    color:red;
+}
+
+#erro a{
+    font-size: 130%;
+}
+
+#erro a:hover{
+    color:blue;
+}
+
+@media only screen and (max-width:580px){
+    
+    body{
+        background-size: 160px 160px;
+    }
+    
+    #form-box{
+        width: 250px;
+	padding: 20px;
+	margin: 20px auto;
+	background: #fff;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border: 1px solid #000;
+    }
+    
+    .form-box{
+        width: 250px;
+	padding: 20px;
+	margin: 20px auto;
+	background: #fff;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border: 1px solid #000;
+    }
+    
+    #logout {
+        height: 5%;
+        font-size: 100%;
+    }
+    
+    #menu nav a:hover{
+    color: blue;
+    font-size: 100%;
+    }
+    
+    #Logo {
+        height: 50%;
+    }
+    
+    #Logo h1{
+        font-size: 90%;
+    }
+    
+    #menu{
+        height: 11%;
+    }
+    
+    #menu nav{
+        width: 30%;
+    }
+    
+    #menu p{
+        font-size: 70%;
+    }
+    
+    #menu nav a{
+        font-size: 70%;
+    }
+    
+    #Lista_eventos h1{
+        font-size: 98%;
+        clear: both;
+    }
+    
+    .e_info {
+        width: 100%;
+        display: block;
+    }
+    
+    .e_info img{
+        height: 40px;
+        width: 25%;
+        margin-bottom: 1px;
+        float:left;
+    }
+    
+    .e_info p{
+        width: 75%;
+        font-size: 85%;
+        float: right;        
+        border-bottom: groove;
+        border-color: black;
+        
+    }
+    
+     .e_info p a{
+         padding-left: 3%;
+    }
+    
+    #nomes{
+        border-right-style: none;
+    }
+    
+    #INFO_h3{
+        float: left;
+        width: 100%;
+    }
+    
+    .b{
+        font-size: 90%;
+    }
+    
+    
+    #pag{
+        clear: both;
+        font-size: 70%;
+    }
+    
+    #rodape #patron{
+        margin-left: 5%;
+        padding-top: 5%;
+    
+    }
+
+    #rodape #sobre{
+        margin-left: 5%;
+        padding-top: 5%;
+
+    }
+
+    #rodape #autor{
+        padding-top: 5%;
+        padding-right: 5%;
+        text-align: right;
+
+    }
+    
+    #rodape{
+        height: 40%;
+        width: 100%;
+        font-size: 75%;
+    }
+    
+    #ref{
+    width: 65%;
+    padding-left: 6%;
+    
+    }
+
+    #ref a{
+        margin-left: 25%;
+    }
+    
+        #ref{
+    width: 65%;
+    padding-left: 6%;
+    
+    }
+
+    #ref a{
+        margin-left: 25%;
+    }
+    
+    #response img{
+        width: 35%;
+        height: 25%;
+    }
+    
+    #response h3{
+        font-size: 90%;
+        margin-left: 22%;
+        width: 70%;
+    }
+    
+    #response h4{
+        font-size: 70%;
+        margin-left: 38%;
+    }
+    
+    #response p{
+        font-size: 85%;
+    }
+    
+    #response a{
+        font-size: 85%;
+    }
+    
+    #Info_Participante img{
+        float:none;
+        width: 50%;
+    }
+    
+    #Info_Participante h3{
+        margin-left: 1%;
+    }
+    
+    .insc{
+        width: 95%;
+    }
+    
+}

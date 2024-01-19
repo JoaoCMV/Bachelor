@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "224990488532",
+    "firebase_url": "https://smafut-14e28-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "smafut-14e28",
+    "storage_bucket": "smafut-14e28.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:224990488532:android:580b170d10750e83779841",
+        "android_client_info": {
+          "package_name": "sma.projeto.smafut"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "224990488532-4cbvv9lvu18bq3vk9sdmebrntp7uqsj8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABnaTBvng3fK_QhFOUiaN7biVQ9cwsCPU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "224990488532-4cbvv9lvu18bq3vk9sdmebrntp7uqsj8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

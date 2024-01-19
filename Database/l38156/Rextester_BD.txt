@@ -1,0 +1,283 @@
+
+Create table membro ( 
+
+ Nome varchar(15),
+ 
+ IdMemb char(2) primary key, 
+
+ Pais varchar(15), 
+
+ Cidade varchar(10),
+    
+ DataNasc varchar(10)
+
+);
+
+
+insert into membro values ('joao','01', 'portugal', 'lisboa', '1997');
+
+insert into membro values ('pedro','02', 'portugal', 'faro', '1993');
+
+insert into membro values ('vasco','03', 'portugal', 'lisboa', '1977');
+
+insert into membro values ('ana','04', 'portugal', 'porto', '2001');
+
+insert into membro values ('yuri','05', 'russia', 'moscovo', '1999');
+
+insert into membro values ('nicole','06', 'portugal', 'lisboa', '1999');
+
+insert into membro values ('francisco','07', 'portugal', 'evora', '1982');
+
+insert into membro values ('paulo','08', 'portugal', 'lisboa', '1995');
+
+insert into membro values ('joaquim','09', 'inglaterra', 'londres', '1979');
+
+insert into membro values ('andre','10', 'franca', 'paris', '1993');
+
+insert into membro values ('andreia','11', 'portugal', 'lisboa', '1999');
+
+insert into membro values ('ines','12', 'portugal', 'faro', '1993');
+
+insert into membro values ('maria','13', 'portugal', 'beja', '1989');
+
+insert into membro values ('mariana','14', 'portugal', 'porto', '2002');
+
+insert into membro values ('jacinto','15', 'italia', 'turim', '1997');
+
+insert into membro values ('catarina','16', 'portugal', 'braga', '1998');
+
+insert into membro values ('carla','17', 'inglaterra', 'londres', '1990');
+
+insert into membro values ('daniela','18', 'angola', 'luanda', '1994');
+
+insert into membro values ('tiago','19', 'portugal', 'faro', '1985');
+
+insert into membro values ('joana','20', 'portugal', 'evora', '1980');
+
+
+
+
+Create table autor(
+
+ CodA  char(3) primary key, 
+
+ NomeA varchar(25),  
+
+ PaisA  varchar(15)
+
+);
+
+
+insert into autor values ('a01','agatha christie', 'portugal');
+
+insert into autor values ('a02','francisco jose viegas','portugal');
+
+insert into autor values ('a03','pedro pedrosa','portugal');
+
+insert into autor values ('a04','ana anacleto','portugal');
+
+insert into autor values ('a05','rita ramalho','portugal');
+
+
+
+
+Create table livro(
+
+ ISBN char(9) primary key,
+
+ Titulo varchar(55)
+
+);
+
+
+insert into livro values ('123', 'o misterio da estrada de sintra');
+
+insert into livro values ('124', 'o crime do padre amaro');
+
+insert into livro values ('125', 'a tragedia da rua das flores');
+
+insert into livro values ('126', 'o primo basilio');
+
+insert into livro values ('127', 'memorial do convento');
+
+insert into livro values ('128', 'O ano da morte de ricardo reis');
+
+insert into livro values ('129', 'a jangada de pedra');
+
+insert into livro values ('130', 'historia do cerco de lisboa');
+
+insert into livro values ('131', 'O evangelho segundo jesus cristo');
+
+insert into livro values ('132', 'a histora do meu ponei');
+
+
+
+Create table autoria(
+
+ISBN char(9),
+
+CodA char(3),
+
+primary key (ISBN,CodA),
+
+foreign key (ISBN) references livro on  delete restrict,
+
+foreign key (CodA) references autor on  delete restrict
+
+);
+
+
+insert into autoria values ('123','a01');
+insert into autoria values ('123','a02');
+insert into autoria values ('123','a03');
+
+
+insert into autoria values ('124','a01');
+insert into autoria values ('124','a02');
+
+
+insert into autoria values ('125','a03');
+insert into autoria values ('125','a02');
+
+
+insert into autoria values ('126','a04');
+
+
+insert into autoria values ('127','a04');
+
+
+insert into autoria values ('128','a05');
+
+
+insert into autoria values ('129','a05');
+
+
+insert into autoria values ('130','a03');
+
+
+insert into autoria values ('131','a02');
+
+
+insert into autoria values ('131','a01');
+insert into autoria values ('131','a05');
+
+
+
+create table genero(
+    
+ISBN char(9),
+    
+genero varchar(15),
+    
+primary key (ISBN,genero),
+    
+foreign key (ISBN) references livro on  delete restrict
+    
+);
+
+insert into genero values ('123','policial');
+insert into genero values ('123','romance');
+insert into genero values ('123','drama');
+
+insert into genero values ('124','policial');
+insert into genero values ('124','drama');
+
+insert into genero values ('125','policial');
+insert into genero values ('125','terror');
+
+insert into genero values ('126','policial');
+insert into genero values ('126','terror');
+
+insert into genero values ('127','policial');
+insert into genero values ('127','drama');
+
+insert into genero values ('128','policial');
+insert into genero values ('128','terror');
+
+insert into genero values ('129','policial');
+insert into genero values ('129','romance');
+
+insert into genero values ('130','policial');
+insert into genero values ('130','infantil');
+
+insert into genero values ('131','policial');
+insert into genero values ('131','comedia');
+
+insert into genero values ('132','policial');
+insert into genero values ('132','comedia');
+
+
+create table amigos(
+    
+IdMemb char(2),
+    
+IdMembB char(2),
+    
+primary key (IdMemb,IdMembB),
+    
+foreign key (IdMemb) references membro on  delete restrict
+    
+);
+
+insert into amigos values ('01', '02');
+insert into amigos values ('01', '03');
+insert into amigos values ('01', '04');
+insert into amigos values ('01', '05');
+insert into amigos values ('01', '06');
+insert into amigos values ('01', '07');
+insert into amigos values ('01', '08');
+insert into amigos values ('01', '09');
+insert into amigos values ('01', '10');
+insert into amigos values ('01', '11');
+insert into amigos values ('01', '12');
+insert into amigos values ('01', '13');
+insert into amigos values ('01', '14');
+insert into amigos values ('01', '15');
+insert into amigos values ('01', '16');
+insert into amigos values ('01', '17');
+insert into amigos values ('01', '18');
+insert into amigos values ('01', '19');
+insert into amigos values ('01', '20');
+
+insert into amigos values ('02', '03');
+insert into amigos values ('02', '04');
+
+insert into amigos values ('03', '04');
+
+insert into amigos values ('05', '06');
+insert into amigos values ('05', '08');
+
+create table gosta(
+    
+IdMemb char(2),
+    
+ISBN char(9),
+    
+foreign key (IdMemb) references membro on  delete restrict,
+
+foreign key (ISBN) references livro on  delete restrict
+    
+);
+
+insert into gosta values ('01', '123');
+insert into gosta values ('01', '124');
+insert into gosta values ('01', '131');
+insert into gosta values ('02', '124');
+insert into gosta values ('03', '127');
+insert into gosta values ('04', '131');
+insert into gosta values ('05', '125');
+insert into gosta values ('06', '123');
+insert into gosta values ('07', '126');
+insert into gosta values ('08', '129');
+insert into gosta values ('09', '130');
+insert into gosta values ('10', '128');
+insert into gosta values ('11', '132');
+insert into gosta values ('12', '131');
+insert into gosta values ('13', '124');
+insert into gosta values ('14', '125');
+insert into gosta values ('15', '128');
+insert into gosta values ('16', '129');
+insert into gosta values ('17', '124');
+insert into gosta values ('18', '123');
+insert into gosta values ('19', '124');
+insert into gosta values ('20', '127');

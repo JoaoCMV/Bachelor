@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "266634895025",
+    "project_id": "projetosma-199a8",
+    "storage_bucket": "projetosma-199a8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:266634895025:android:74255e4f3f13b6ba948c90",
+        "android_client_info": {
+          "package_name": "sma.projeto.smafut"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "266634895025-pqa8g6o1b8ad3et8le85mmfjt8gtiiur.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBupvfNqeL44NaQcNmhLMpX58BxP3UwKTo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "266634895025-pqa8g6o1b8ad3et8le85mmfjt8gtiiur.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>T1_HomePage</title>
+    <link rel="stylesheet" href= "style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> 
+    </script>
+    <script>
+        
+        // Info sobre os eventos de hoje/passados/futuros e a respetiva página 
+        var l_eh = [];
+        var p_eh = 0;
+        
+        var l_ep = [];
+        var p_ep = 0;
+        
+        var l_ef = [];
+        var p_ef = 0;
+        
+        // Informações sobre o evento em pesquisa
+        var e_pesquisado;
+        var l_inscritos = [];
+        var l_rank = [];
+        
+        // Info sobre filtros
+        var showfiltro = 0;
+        
+        // Carrega todos os eventos disponiveis
+        function loadevents(){
+            console.log("SEARCH_EVENTOS...");
+            $('#INFO').css('display', 'none');
+            $('#top3').css('display', 'none');
+            $('#Filtros').css('display', 'none');
+            var obj = { nome: " "};
+            $.ajax({
+                url: "http://alunos.di.uevora.pt/tweb/t1/eventsearch",
+                type: 'POST',
+                dataType: 'json',                    
+                data: obj,
+                success: function (data){
+                    console.log( "SUCESSO: \n" + JSON.stringify(data) );
+                    let hoje = new Date("2021-07-26");
+                    console.log(hoje);
+                    
+                    // Verifica o dia do evento e o atual para saber em que categoria inserir
+                    for(let i = 0; i < data.eventos.length ; i++){
+                        let d = new Date(data.eventos[i].data);
+                        console.log(d);      
+                                                
+                        if(d.getFullYear() == hoje.getFullYear() && 
+                           d.getMonth() == hoje.getMonth() &&
+                           d.getDate() == hoje.getDate() ){
+                           console.log("Mesmo dia");
+                           l_eh.push(data.eventos[i]);             // Adiciona a lista os eventos conforme a data
+                                                      
+                        }else if(d.valueOf() < hoje.valueOf()){
+                            console.log("ANTES: " + data.eventos[i].nome);
+                            l_ep.push(data.eventos[i]);             // Adiciona a lista os eventos conforme a data
+                            
+                        }else if(d.valueOf() > hoje.valueOf()){
+                            console.log("DEPOIS: " + data.eventos[i].nome);
+                            l_ef.push(data.eventos[i]);             // Adiciona a lista os eventos conforme a data
+                                                
+                        }                        
+                    }
+                    att();
+                },
+                error: function( ){
+                    console.log( "ERRO ao carregar eventos onload." );
+                }
+            });
+        }
+                
+        // Coloca os devidos eventos na página
+        function att(){
+        
+            var p;      // n. paginas necessarias
+            
+            
+            // ---------- Eventos Hoje ----------------------   
+            if(l_eh.length == 0) $('#h1_h').css('display','none');
+            
+            // Percorre os 4 primeiros eventos para poder colocar na pagina
+            // No caso de existir mais de 4 elementos é feita uma paginação
+            for(var i = 0; i < l_eh.length && i < 4; i++){                
+                $('#e_hoje').append("<div class=e_info>" +
+                                               "<p>" + l_eh[i].nome + "</p>"+
+                                               "<img src=Img/Evento.jpg onclick = getInfoH(" + i + ") alt= EVENTO PNG width=160 height=140>" +
+                                               "</div>" );
+            }
+            
+            // Adiciona o navegador de páginas 
+            if ( 1 < (l_eh.length/4) ){
+                $('#pag_h').css( 'display' , 'center');
+            }else{
+                $('#pag_h').css( 'display' , 'none');
+            }
+            
+            for(var i = 1; i < (l_eh.length/4); i++){
+                console.log("Adicionado pag. a e_Hoje");
+                $('#pag_h').append("<li> <a onclick = setpagH(" + i + ")> " + (i+1) +
+                                   "</a></li>");                                    
+            }
+            
+            
+            // ---------- Eventos Futuros ----------------------
+            if(l_ef.length == 0) $('#h1_f').css('display','none');
+            
+            for(var i = 0; i < l_ef.length && i < 4; i++){                
+                $('#e_futuros').append("<div class=e_info>" +
+                                               "<p>" + l_ef[i].nome + "</p>"+
+                                               "<img src=Img/Evento.jpg onclick = getInfoF(" + i + ") alt= EVENTO PNG width=160 height=140>" +
+                                               "</div>" );
+            }
+            
+            // Adiciona o navegador de páginas 
+            if( 1 < (l_ef.length/4) ){
+                $('#pag_f').css( 'display' , 'center');
+            }else{
+                $('#pag_f').css( 'display' , 'none');
+            }
+            
+            for(var i = 1; i < (l_ef.length/4); i++){
+                console.log("Adicionado pag. a e_Futuros");
+                $('#pag_f').append("<li> <a onclick = setpagF(" + i + ")> " + (i+1) +
+                                   "</a></li>");                                    
+            }
+            
+            
+            // ---------- Eventos Passados ----------------------
+            if(l_ep.length == 0) $('#h1_p').css('display','none');
+            
+            for(var i = 0; i < l_ep.length && i < 4; i++){ 
+                $('#e_passados').append("<div class=e_info>" +
+                                               "<p>" + l_ep[i].nome + "</p>"+
+                                               "<img src=Img/Evento.jpg onclick = getInfoP(" + i + ") alt= EVENTO PNG width=160 height=140>" +
+                                               "</div>" );
+            }
+            
+            // Adiciona o navegador de páginas 
+            if ( 1 < (l_ep.length/4) ){
+                $('#pag_p').css( 'display' , 'center');
+            }else{
+                $('#pag_p').css( 'display' , 'none');
+            }
+            
+            for(var i = 1; i < (l_ep.length/4); i++){
+                console.log("Adicionado pag. a e_Passados");
+                $('#pag_p').append("<li> <a onclick = setpagP(" + i + ")> " + (i+1) +
+                                   "</a></li>");                                    
+            }
+            
+        }
+                       
+        
+        // Altera a página
+        function setpagH(p){
+            p_eh = p;
+            console.log("Eventos Hoje " + p*4 + " até " + ( (p*4) + 3 ) );
+            $('#e_hoje').empty();                                           // Limpa a lista para atualizar os eventos
+            var y = 0;
+            for(var i = (p*4); i < (p*4) + 4 && i < l_eh.length; i++){
+                console.log("ADICIONA: " + l_eh[i].nome + " pag. " + p_eh);
+                $('#e_hoje').append("<div class=e_info>" +
+                                    "<p>" + l_eh[i].nome + "</p>"+
+                                    "<img src=Img/Evento.jpg onclick = getInfoH(" + y + ") alt= EVENTO PNG width=160 height=140>" +
+                                    "</div>" );     
+                y++;
+            }
+        }
+        
+        // Altera a página
+        function setpagF(p){
+            p_ef = p;
+            console.log("Eventos Futuros " + p*4 + " até " + ( (p*4) + 3 ) );
+            $('#e_futuros').empty();                                           // Limpa a lista para atualizar os eventos
+            var y = 0;
+            for(var i = (p*4); i < (p*4) + 4 && i < l_ef.length; i++){
+                console.log("ADICIONA: " + l_ef[i].nome + " pag. " + p_ef);
+                $('#e_futuros').append("<div class=e_info>" +
+                                       "<p>" + l_ef[i].nome + "</p>"+
+                                       "<img src=Img/Evento.jpg onclick = getInfoF(" + y + ") alt= EVENTO PNG width=160 height=140>" +
+                                       "</div>" ); 
+                y++;
+            }
+        }
+        
+        // Altera a página
+        function setpagP(p){
+            p_ep = p;
+            console.log("Eventos Passados " + p*4 + " até " + ( (p*4) + 3 ) );
+            $('#e_passados').empty();                                           // Limpa a lista para atualizar os eventos
+            var y = 0;
+            for(var i = (p*4); i < (p*4) + 4 && i < l_ep.length; i++){
+                console.log("ADICIONA: " + l_ep[i].nome + " pag. " + p_ep);
+                $('#e_passados').append("<div class=e_info>" +
+                                               "<p>" + l_ep[i].nome + "</p>"+
+                                               "<img src=Img/Evento.jpg  onclick = getInfoP(" + y + ") alt= EVENTO PNG width=160 height=140>" +
+                                               "</div>" ); 
+                y++;
+            }
+        }   
+        
+        // Devolve informação sobre o evento segundo a imagem selecionada
+        function getInfoH(i){
+            var ind = 4*p_eh + i;
+            getInscritos( l_eh[ind] );
+            console.log("INFO DE " + l_eh[ind].nome + "Indice: " + ind );
+        }
+        
+        function getInfoF(i){
+            var ind = 4*p_ef + i;
+            getInscritos( l_ef[ind] );
+            console.log("INFO DE " + l_ef[ind].nome + "Indice: " + ind );
+        }
+        
+        function getInfoP(i){
+            var ind = 4*p_ep + i;
+            getInscritos( l_ep[ind] );
+            console.log("INFO DE " + l_ep[ind].nome + "Indice: " + ind );
+        }
+        
+        
+        // PROBLEMAS COM CARACTERES ESPECIAIS procura pelo id
+        function getInscritos(e){
+            $('#info_descricao').html(e.descricao);
+            $('#info_data').html(e.data);
+            console.log("GET: " + e.nome );
+            var obj = {evento : e.id};
+            e_pesquisado = e;
+            
+            // Obtem a lista de nomes
+            $.ajax({
+                url: "http://alunos.di.uevora.pt/tweb/t1/inscritos",
+                type: 'POST',
+                dataType: 'json',                    
+                data: obj,
+                success: function (data){
+                    console.log( "SUCESSO: \n" + JSON.stringify(data) );
+                    $('#Lista_eventos').css('display', 'none');
+                    $('#INFO').css('display', 'block');
+                    $('#INFO_h').html(e.nome);
+                    
+                    // Atualiza a lista de inscritos
+                    for(var i = 0 ; i < data.inscritos.length; i++) {
+                        l_inscritos.push(data.inscritos[i]);
+                        $('#lista_info').append("<li>" + data.inscritos[i].nome +
+                                                ", " + data.inscritos[i].genero +
+                                                ", " + data.inscritos[i].escalao);
+                    }
+                },
+                error: function( ){
+                    console.log( "ERRO ao carregar lista de inscritos." );
+                }
+            });
+            
+            // Obtem a lista de Rank
+            $.ajax({
+                url: "http://alunos.di.uevora.pt/tweb/t1/classif",
+                type: 'POST',
+                dataType: 'json',                    
+                data: obj,
+                success: function (data){
+                    console.log( "SUCESSO_2: \n" + JSON.stringify(data) );
+                    
+                    // Atualiza a lista de rank
+                    for(var i = 0 ; i < data.classif.length; i++) {
+                        l_rank.push(data.classif[i]);
+                        $('#lista_rank').append("<li>" + data.classif[i].nome +
+                                                ", " + data.classif[i].tempo +
+                                                ", " + data.classif[i].escalao + "</li>");
+                    }
+                },
+                error: function( ){
+                    console.log( "ERRO ao carregar lista rank." );
+                }
+            });
+        }
+        
+                
+        // Procura o inscrito por Nome
+        function searchN(){
+            var n = $('#s_nome').val();
+            $('#lista_info').empty();
+            console.log("NOME: " + n);
+            for(var i = 0; i < l_inscritos.length ; i++){
+                if(l_inscritos[i].nome == n){
+                    $('#lista_info').append("<li>" + l_inscritos[i].nome +
+                                                ", " + l_inscritos[i].genero +
+                                                ", " + l_inscritos[i].escalao + "</li>");
+                }
+            }
+            
+             $('#lista_rank').empty();
+            for(var i = 0 ; i < l_rank.length; i++) {
+                    if(l_rank[i].nome == n){
+                        $('#lista_rank').append("<li>" + l_rank[i].nome +
+                                                ", " + l_rank[i].tempo +
+                                                ", " + l_rank[i].escalao + "</li>");
+                    }
+            }
+        }
+        
+        //Procura o inscrito por Escalao
+        function searchE(){
+            var esc = $('#s_escalao').val();
+            $('#lista_info').empty();
+            console.log("Escalao: " + esc);
+            for(var i = 0; i < l_inscritos.length ; i++){
+                if(l_inscritos[i].escalao == esc){
+                    $('#lista_info').append("<li>" + l_inscritos[i].nome +
+                                                ", " + l_inscritos[i].genero +
+                                                ", " + l_inscritos[i].escalao + "</li>");
+                }
+            }
+            
+             $('#lista_rank').empty();
+            for(var i = 0 ; i < l_rank.length; i++) {
+                    if(l_rank[i].escalao == esc){
+                        $('#lista_rank').append("<li>" + l_rank[i].nome +
+                                                ", " + l_rank[i].tempo +
+                                                ", " + l_rank[i].escalao + "</li>");
+                    }
+            }
+        }
+        
+       function rankM(){
+            var obj = {evento : e_pesquisado.id , genero : "m"};
+            
+            // Obtem a lista de nomes
+            $.ajax({
+                url: "http://alunos.di.uevora.pt/tweb/t1/classif",
+                type: 'POST',
+                dataType: 'json',                    
+                data: obj,
+                success: function (data){
+                $('#lista_rank').empty();
+                    console.log( "SUCESSO_3: \n" + JSON.stringify(data) );
+                    
+                    // Atualiza a lista de rank
+                    for(var i = 0 ; i < data.classif.length; i++) {
+                        $('#lista_rank').append("<li>" + data.classif[i].nome +
+                                                ", " + data.classif[i].tempo +
+                                                ", " + data.classif[i].escalao + "</li>");
+                    }
+                                    
+                },
+                error: function( ){
+                    console.log( "ERRO ao carregar lista de inscritos." );
+                }
+            });
+        }
+        
+        function rankF(){
+            var obj = {evento : e_pesquisado.id , genero : "f"};
+            
+            // Obtem a lista de nomes
+            $.ajax({
+                url: "http://alunos.di.uevora.pt/tweb/t1/classif",
+                type: 'POST',
+                dataType: 'json',                    
+                data: obj,
+                success: function (data){
+                $('#lista_rank').empty();
+                    console.log( "SUCESSO_3: \n" + JSON.stringify(data) );
+                    
+                    // Atualiza a lista de rank
+                    for(var i = 0 ; i < data.classif.length; i++) {
+                        $('#lista_rank').append("<li>" + data.classif[i].nome +
+                                                ", " + data.classif[i].tempo +
+                                                ", " + data.classif[i].escalao + "</li>");
+                    }
+                                    
+                },
+                error: function( ){
+                    console.log( "ERRO ao carregar lista de inscritos." );
+                }
+            });
+        }
+        
+        // Volta a listar o rank geral
+        function rank(){
+            $('#lista_rank').empty();
+            for(var i = 0 ; i < l_rank.length; i++) {
+                        $('#lista_rank').append("<li>" + l_rank[i].nome +
+                                                ", " + l_rank[i].tempo +
+                                                ", " + l_rank[i].escalao + "</li>");
+                    }
+        }
+        
+        // Volta a listar os nomes
+        function nomes(){
+            $('#lista_info').empty();
+            for(var i = 0 ; i < l_inscritos.length; i++) {
+                        $('#lista_info').append("<li>" + l_inscritos[i].nome +
+                                                ", " + l_inscritos[i].genero +
+                                                ", " + l_inscritos[i].escalao + "</li>");
+                    }
+        }
+        
+        // Funcao auxiliar para todos os escaloes
+        function getTop3(){
+            
+            $('#top3').css('display', 'block');
+            // Top3 juniores            
+            top3(e_pesquisado.id, "jun");
+            top3(e_pesquisado.id, "sen");
+            top3(e_pesquisado.id, "vet35");
+            top3(e_pesquisado.id, "vet40");
+            top3(e_pesquisado.id, "vet50");
+            top3(e_pesquisado.id, "vet60+");
+        }
+        
+        //Apresenta o top3 de cada escalao
+        function top3(e, s){
+        
+            obj_f  = {evento : e , escalao: s, genero : "f"};
+            obj_m  = {evento : e , escalao: s, genero : "m"};
+            
+            if(s == "vet60+") s = "vet60";
+        
+            // Obtem top3 masculino
+            $.ajax({
+                url: "http://alunos.di.uevora.pt/tweb/t1/top3",
+                type: 'POST',
+                dataType: 'json',                    
+                data: obj_m,
+                success: function (data){
+                    console.log( "SUCESSO_TOP3: " + s + "\n" + JSON.stringify(data) );                   
+                    
+                    for(var i = 0; i < data.top3.length; i++){
+                        $('#' + s + 'lm').append(" <li> " + data.top3[i].nome + 
+                                            "</li>");
+                    }
+                },
+                error: function( ){
+                    console.log( "ERRO ao carregar top3." );
+                }
+            });
+            
+            // Obtem top3 feminino
+            $.ajax({
+                url: "http://alunos.di.uevora.pt/tweb/t1/top3",
+                type: 'POST',
+                dataType: 'json',                    
+                data: obj_f,
+                success: function (data){
+                    console.log( "SUCESSO_TOP3: " + s + "\n" + JSON.stringify(data) ); 
+                    
+                    for(var i = 0; i < data.top3.length; i++){
+                        $('#' + s + 'lf').append(" <li> " + data.top3[i].nome + 
+                                            "</li> </ol>");
+                    }
+                },
+                error: function( ){
+                    console.log( "ERRO ao carregar top3." );
+                }
+            });
+        }
+        
+        // Altera a visibilidade dos Filtros
+        function setStat(){
+            if(showfiltro == 0){
+                $('#Filtros').css('display', 'block');
+                showfiltro = 1;
+            }else{
+                $('#Filtros').css('display', 'none');
+                showfiltro = 0;
+            }
+        }
+   
+    </script>
+   
+</head>
+
+<body onload = "loadevents()">
+    
+    <div id="menu">
+        <nav><a href="Fonte.html">HomePage</a></nav>
+        <nav><a href="Pesquisa.html">Pesquisa</a></nav>        
+        <nav><a href="Inscrever.html">Inscrever</a></nav>
+        <nav><a class="ADMIN" href="NovoEvento.html">Novo evento</a></nav> 
+        <nav><a class="ADMIN" href="RegistarTempo.html">Registar Tempo</a></nav>
+    </div>
+    
+    <div id="Logo">
+        <img src="Img/Logo.jpeg" alt="LOGO" width="240" height="120">
+        <h1>Penguin Eventos</h1>
+    </div>
+    
+    <div id="Lista_eventos">
+        <h1 id="h1_h" class="h1_hp">Eventos de Hoje</h1>
+        <p id= "e_hoje" ></p>   
+        <div id='pag'>
+            <ul class="paginas" id ="pag_h">
+                <li><a onclick = setpagH(0)> 1 </a></li>
+            </ul>
+        </div>
+        
+        <h1 id = "h1_f" class="h1_hp">Futuros Eventos</h1>
+        <p id= "e_futuros" ></p>
+        <div id='pag'>
+            <ul class="paginas" id ="pag_f">
+                <li><a onclick = setpagF(0)> 1 </a></li>
+            </ul>       
+        </div>
+        
+        <h1 id="h1_p" class="h1_hp">Eventos Concluidos</h1>
+        <p id= "e_passados" ></p>
+        <div id='pag'>
+            <ul class="paginas" id ="pag_p">
+                <li><a onclick = setpagP(0)> 1 </a></li>
+            </ul>
+        </div>
+    </div>   
+        
+    <div id="INFO">
+        
+        <div id="INFO_List">
+            
+            <h1 id="INFO_h"></h1>
+            <div id="e_infos">                
+                <img src="Img/Evento.jpg" alt="Erro na imagem" width="360" height="380">
+                <p id="info_descricao"></p>
+                <p id="info_data"></p>
+            </div>
+            
+            <h3 id="INFO_h3" onclick = setStat()>Filtros </h3>
+            <div id="Filtros">                
+                
+                <div id="f1">
+                    <p>
+                        <label>Nome: </label>
+                        <input id="s_nome" type="text" name ="nome" value="">
+                        <input class = "b" type='submit' value='Procurar' onclick="searchN()"> 
+                    </p>        
+                    <p>
+                        <label>Escalao: </label>
+                        <input id="s_escalao" type="text" name ="escalao" value="">
+                        <input class = "b" type='submit' value='Procurar' onclick="searchE()">
+                    </p>
+                    <p>
+                        <button type ="button" onclick="nomes()"> Todos</button>
+                    </p>
+                </div>
+                <div id="f2">
+                    <button type ="button" onclick="rankM()"> Rank Masculino</button>
+                    <button type ="button" onclick="rankF()"> Rank Feminino</button>
+                    <p>
+                        <button id="t3b" type ="button" onclick="rank()"> Rank Geral</button>
+                    </p>
+                </div>
+            </div>
+
+            <div id="nomes">
+                <h2>Participantes (nome, genero, escalao)</h2>
+                <ul id="lista_info"></ul>              
+            </div>
+
+            <div id="rank">
+                <h2>Classificação</h2>
+                <ol id="lista_rank"></ol>                
+            </div>
+            
+            <p>
+                <button id="t3b" type ="button" onclick="getTop3()">Apresentar Pódios</button>
+            </p>
+        </div>
+        
+        <div id='top3'>            
+                        
+            <div id="top3junm" class="top3m">
+                <h3> Top3 Juniores (m)</h3>
+                <ol id="junlm"></ol>                
+            </div>
+            
+            <div id="top3junf" class="top3f">
+                <h3> Top3 Juniores (f)</h3>
+                <ol id="junlf"></ol>                
+            </div>
+            
+            <div id="top3senm" class="top3m">
+                <h3> Top3 Seniores (m)</h3>
+                <ol id="senlm"></ol>                
+            </div>
+            
+            <div id="top3senf" class="top3f">
+                <h3> Top3 Seniores (f)</h3>
+                <ol id="senlf"></ol>                
+            </div>
+            
+            <div id="top3vet35m" class="top3m">
+                <h3> Top3 Veteranos35 (m)</h3>
+                <ol id="vet35lm"></ol>                
+            </div>
+            
+            <div id="top3vet35f" class="top3f">
+                <h3> Top3 Veteranos35 (f)</h3>
+                <ol id="vet35lf"></ol>                
+            </div>
+            
+            <div id="top3vet40m" class="top3m">
+                <h3> Top3 Veteranos40 (m)</h3>
+                <ol id="vet40lm"></ol>                
+            </div>
+            
+            <div id="top3vet40f" class="top3f">
+                <h3> Top3 Veteranos40 (f)</h3>
+                <ol id="vet40lf"></ol>                
+            </div>
+            
+            <div id="top3vet50m" class="top3m">
+                <h3> Top3 Veteranos50 (m)</h3>
+                <ol id="vet50lm"></ol>                
+            </div>
+            
+            <div id="top3vet50f" class="top3f">
+                <h3> Top3 Veteranos50 (f)</h3>
+                <ol id="vet50lf"></ol>                
+            </div>
+            
+            <div id="top3vet60m" class="top3m">
+                <h3> Top3 Veteranos60+ (m)</h3>
+                <ol id="vet60lm"></ol>                
+            </div>
+            
+            <div id="top3vet60f" class="top3f">
+                <h3> Top3 Veteranos60+ (f)</h3>
+                <ol id="vet60lf"></ol>                
+            </div>
+        </div>
+        
+        
+    </div>
+             
+    <div id="rodape">      
+        <p id="patron">UE- Universidade de Évora e TW- Tecnologias Web</p>
+        <p id = "sobre"> Empresa fundada em 2021 na cidade de Évora reponsavél por vários eventos</p>
+        <p id="autor"> João Verdilheiro</p>        
+    </div>
+        
+</body>
+</html>

@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">SMAFut</string>
+    <string name="create_account">Create Account</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="or">or</string>
+    <string name="sign_in">Sign in</string>
+    <string name="you_are_signed_in">You are signed in</string>
+    <string name="sign_out">Sign out</string>
+    <string name="create_player">Create New Player</string>
+    <string name="player_list">All players</string>
+    <string name="game">Play Game</string>
+    <string name="np_text">Create your Player</string>
+    <string name="team1">Team 1</string>
+    <string name="team2">Team 2</string>
+    <string name="back_home">Home</string>
+
+
+</resources>

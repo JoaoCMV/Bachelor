@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>T1_HomePage</title>
+    <link rel="stylesheet" href= "style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> 
+    </script>
+    <script>
+        
+        function sendData(){
+            function processForm(e){
+                console.log("SEARCH_EVENTOS (data)...");
+                
+                $.ajax({
+                    url: "http://alunos.di.uevora.pt/tweb/t1/inscricao",
+                    type: 'POST',
+                    dataType: 'json',                    
+                    data: $(this).serialize(),
+                    success: function (data){
+                        console.log( "SUCESSO: " + JSON.stringify(data) );                       
+                    },
+                    error: function( ){
+                        console.log( "ERRO" );
+                    }
+                });
+                e.preventDefault();
+            }
+
+            $('#datainsc_form').submit( processForm );
+        }                 
+         
+    </script>
+   
+</head>
+
+<body>
+    
+    <div id="menu">
+        <nav><a href="Fonte.html">HomePage</a></nav>
+    </div>
+    
+    <div id="Logo">
+        <img src="Img/Logo.jpeg" alt="LOGO" width="240" height="120">
+        <h1>Penguin Eventos</h1>
+    </div>
+    
+    <div id="insc_data">
+           
+        <form id='datainsc_form'>
+            <p>
+                <label>Evento: </label>
+                <input type ="text" name = "evento">
+            </p>
+            
+            <p>
+                <label>Nome: </label>
+                <input type ="text" name = "nome">
+            </p>
+            
+            
+                <label>Género: </label>
+                <ol>
+                    <li>
+                        <input type ="radio" name="genero" value="m">Masculino
+                    </li>
+                    <li>
+                        <input type ="radio" name="genero" value="f">Feminino
+                    </li>
+                </ol>
+                
+            <p>Escalão: 
+                <select name="escalao">
+                <option value="jun"> Junior (18 a 19 anos)</option>
+                <option value="sen"> Seniores ( 20 a 34 anos)</option>
+                <option value="vet35"> Veteranos 35 (35 aos 39 anos)</option>
+                <option value="vet40"> Veteranos 40 (40 aos 49 anos)</option>
+                <option value="vet50"> Veteranos 50 (50 aos 59 anos)</option>
+                <option value="vet60+"> Veteranos 60+ (60 em diante)</option>
+                </select>
+            </p>
+                        
+            <input class='b' type='submit' value='Registar' onclick="sendData()">
+            
+        </form>
+    </div>
+             
+    <div id="rodape">      
+        <p id="patron">UE- Universidade de Évora e TW- Tecnologias Web</p>
+        <p id = "sobre"> Empresa fundada em 2021 na cidade de Évora reponsavél por vários eventos</p>
+        <p id="autor"> João Verdilheiro</p>
+        
+    </div>
+        
+</body>
+</html>
