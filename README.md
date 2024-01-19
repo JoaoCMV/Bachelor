@@ -3,12 +3,12 @@
 * [IA](#IA)
 * [AndroidStudio](#AndroidStudio)
 * [AssemblyProject](#AssemblyProject)
-* [Computer Granphics](#ComputerGranphics)
+* [Computer Graphics](#ComputerGraphics)
 * [Computer Networks](#ComputerNetworks)
 * [Data Structure and Algorithms](#DataStructureAlgorithms)
 * [DataBase](#DataBase)
 * [Distributed Systems](#DistributedSystems)
-* [Java Inicial Porject](#JavaInicialPorject)
+* [Java Inicial Project](#JavaInicialProject)
 * [Machine Learning](#MachineLearning)
 * [Operating Systems](#OperatingSystems)
 * [Prolog](#Prolog)
@@ -42,7 +42,7 @@ These are some of the projects I did during my bachelor degree in Computer Scien
 #### Technologies
 * Assembly
 
-### Computer Granphics
+### Computer Graphics
 
 -> I explore 4 different tools for graphic design: Three.js, Canvas2D, SVG and x3dom;
 
@@ -82,7 +82,7 @@ These are some of the projects I did during my bachelor degree in Computer Scien
 #### Technologies
 * Python
 
-### Java Inicial Porject
+### Java Inicial Project
 
 -> Vendig Machine to know the bases of Java
 
